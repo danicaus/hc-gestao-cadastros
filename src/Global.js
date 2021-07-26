@@ -1,7 +1,7 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-
-export const Container  = styled.main`
+export const Container = styled.main`
     width: 50%;
     
     margin: 5rem auto;
@@ -14,23 +14,26 @@ export const Container  = styled.main`
 
     padding: 5rem 3rem;
     border-radius: .5rem;
+`
 
-    button {
-        display: block;
-        margin: 1rem auto;
-        width: 50%;
+export const Button = styled(Link)`
+    margin: 1rem;
+    width: 40%;
 
-        font-size: 2rem;
-        font-weight: 400;
-        color: #222222;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #222222;
 
-        background-color: #088008;
+    background-color: #088008;
 
-        border: none;
-        border-radius: .5rem;
+    border: none;
+    border-radius: .5rem;
 
-        padding: .8rem;
+    padding: .8rem;
 
-        cursor: pointer;
-    }
+    cursor: pointer;
+
+    text-decoration: none;
+    text-align: center;
+    line-height: normal;
 `

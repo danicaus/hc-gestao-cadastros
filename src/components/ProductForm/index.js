@@ -1,19 +1,24 @@
-import {Form} from './styles'
+import * as S from './styles'
+import * as G from '../../Global'
 
 export function ProductForm() {
 
     function handleForm(e) {
         e.preventDefault()
         const formData = new FormData(e.target)
+
+        const products = localStorage.getItem("Products")
+        const id = products ? products.length+1 : 1
         
-        const client = {
+        const product = {
+            id: id,
             name: formData.get('productName'),
             category: formData.get('productCategory'),
             price: formData.get('productPrice'),
             quantity: formData.get('productQuantity'),
         }
 
-        localStorage.setItem("Product", JSON.stringify(client))
+        localStorage.setItem("Products", [products, JSON.stringify(product)])
         
     }
 
@@ -30,30 +35,32 @@ export function ProductForm() {
     return (
         <>
             <h2>Cadastrar Produto</h2>
-            <Form onSubmit={handleForm}>
-                <div>
+            <form onSubmit={handleForm}>
+                <S.Input>
                     <label htmlFor="productName">Nome</label>
                     <input onBlur={(e) => handleValidation(e.target)} type="text" name="productName" required id="productName"/>
                     <span>Preencha o nome do produto</span>
-                </div>
-                <div>
+                </S.Input>
+                <S.Input>
                     <label htmlFor="productCategory">Categoria</label>
                     <input onBlur={(e) => handleValidation(e.target)} type="text" name="productCategory" required id="productCategory"/>
                     <span>Preencha a categoria do produto</span>
-                </div>
-                <div>
+                </S.Input>
+                <S.Input>
                     <label htmlFor="productPrice">Preço</label>
                     <input onBlur={(e) => handleValidation(e.target)} type="number" min="0" name="productPrice" required id="productPrice"/>
                     <span>Preencha o preço do produto</span>
-                </div>
-                <div>
+                </S.Input>
+                <S.Input>
                     <label htmlFor="productQuantity">Quantidade em estoque</label>
                     <input onBlur={(e) => handleValidation(e.target)} type="number" min="1" name="productQuantity" required id="productQuantity"/>
                     <span>Preencha a quantidade de itens em estoque</span>
-                </div>
-                <button type="submit">Cadastrar</button>
-            </Form>
-            <button>Cancelar</button>
+                </S.Input>
+                <S.Navigation>
+                    <S.Button type="submit">Cadastrar</S.Button>
+                    <G.Button to="/">Cancelar</G.Button>
+                </S.Navigation>
+            </form>
         </>
     )
 }
